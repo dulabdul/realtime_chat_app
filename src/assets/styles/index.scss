@@ -89,6 +89,10 @@ body{
             background-color: #a79f7e;
           }
         }
+        .err{
+          color: #ff3333;
+          font-size: .9rem;
+        }
         span {
           color: #fff;
           text-transform: capitalize;
@@ -168,6 +172,31 @@ body{
         color: #404956;
       }
     }
+    .search-contact{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      background-color: var(--tersier-color);
+      border-radius: .4rem;
+      svg{
+        color:#76777E ;
+        margin-left: .8rem;
+      }
+    input{
+      background-color: var(--tersier-color);
+      width: 100%;
+      color: #fff;
+      border-radius: .4rem;
+      border: none;
+      outline: none;
+      padding: .8rem;
+      &::placeholder{
+        color:#76777E ;
+      }
+      
+    }
+    }
     .contact {
       background-color: #ffffff34;
       min-height: 5rem;
@@ -179,6 +208,7 @@ body{
       gap: 1rem;
       align-items: center;
       transition: 0.5s ease-in-out;
+
       .avatar {
         img {
           height: 3rem;

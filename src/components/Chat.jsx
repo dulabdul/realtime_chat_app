@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { allUsersRoute, host } from '../utils/ApiRoutes';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Contacs from './Contacs';
 import Welcome from './Welcome';
 import ChatContainer from './ChatContainer';
 import { io } from 'socket.io-client';
+
 export default function Chat() {
   const navigate = useNavigate();
   const socket = useRef();
@@ -47,6 +48,7 @@ export default function Chat() {
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
+
   return (
     <div className='container'>
       <div className='container-chat'>
@@ -54,6 +56,7 @@ export default function Chat() {
           contacts={contacts}
           changeChat={handleChatChange}
         />
+
         {currentChat === undefined ? (
           <Welcome />
         ) : (

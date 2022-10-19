@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../assets/logo.svg';
 import { FaPen } from 'react-icons/fa';
+import SearchInput from './SearchInput';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Contacs({ contacts, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserEmail, setCurrentUserEmail] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
+  const [searchParamas, setSearchParamas] = useSearchParams();
+  const [username, setUsername] = useState(() => {
+    return searchParamas.get('username' || '');
+  });
   useEffect(() => {
     async function getData() {
       const data = await JSON.parse(
@@ -23,19 +29,22 @@ export default function Contacs({ contacts, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
+  const onSearchHandler = (username) => {
+    setUsername(username);
+    setSearchParamas(username);
+  };
+  const filteredContacts = contacts.filter((contact) => {
+    return contact.username?.toLowerCase().includes(username?.toLowerCase());
+  });
+  console.log(filteredContacts);
   return (
     <div className='contacts-container'>
-      {/* <div className='brand'>
-        <img
-          src={Logo}
-          alt='Logo'
-        />
-        <h3>Chatty</h3>
-      </div> */}
       <div className='current-user'>
         <div className='avatar'>
           <img
-            src={`data:image/svg+xml;base64,${currentUserImage}`}
+            src={`data:image/svg+xml;base64,${
+              currentUserImage === undefined ? '' : `${currentUserImage}`
+            }`}
             alt='avatar'
           />
         </div>
@@ -53,7 +62,11 @@ export default function Contacs({ contacts, changeChat }) {
           <h2>Messages</h2>
           <FaPen />
         </div>
-        {contacts.map((contact, index) => {
+        <SearchInput
+          title={username}
+          titleChange={onSearchHandler}
+        />
+        {filteredContacts.map((contact, index) => {
           return (
             <div
               key={index}
@@ -63,13 +76,17 @@ export default function Contacs({ contacts, changeChat }) {
               }`}>
               <div className='avatar'>
                 <img
-                  src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+                  src={`data:image/svg+xml;base64,${
+                    contact.avatarImage === undefined
+                      ? ``
+                      : `${contact.avatarImage}`
+                  }`}
                   alt='avatar'
                 />
               </div>
               <div className='short-msg'>
                 <div className='username'>
-                  <h3>{currentUserName}</h3>
+                  <h3>{contact.username}</h3>
                 </div>
                 {/* <div className='msg'>
                   <p>Lorem ipsum dolor sit amet.</p>
