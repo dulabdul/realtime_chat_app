@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-import { allUsersRoute, host } from '../utils/ApiRoutes';
+import { host } from '../utils/ApiRoutes';
 import { useNavigate } from 'react-router-dom';
-import Contacs from './Contacs';
 import Welcome from './Welcome';
 import ChatContainer from './ChatContainer';
 import { io } from 'socket.io-client';

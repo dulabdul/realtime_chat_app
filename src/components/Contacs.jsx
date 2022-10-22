@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../assets/logo.svg';
 import { FaPen } from 'react-icons/fa';
 import SearchInput from './SearchInput';
 import { useSearchParams } from 'react-router-dom';

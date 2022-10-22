@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import loader from '../assets/loader.gif';
 import Button from '../utils/Button';
 import { ToastContainer, toast } from 'react-toastify';
