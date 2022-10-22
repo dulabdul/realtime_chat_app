@@ -3,7 +3,7 @@ import Logo from '../assets/logo.svg';
 import { FaPen } from 'react-icons/fa';
 import SearchInput from './SearchInput';
 import { useSearchParams } from 'react-router-dom';
-
+import Logout from './Logout';
 export default function Contacs({ contacts, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserEmail, setCurrentUserEmail] = useState(undefined);
@@ -36,7 +36,6 @@ export default function Contacs({ contacts, changeChat }) {
   const filteredContacts = contacts.filter((contact) => {
     return contact.username?.toLowerCase().includes(username?.toLowerCase());
   });
-  console.log(filteredContacts);
   return (
     <div className='contacts-container'>
       <div className='current-user'>
@@ -56,6 +55,8 @@ export default function Contacs({ contacts, changeChat }) {
             <h4>{currentUserEmail}</h4>
           </div>
         </div>
+
+        <Logout />
       </div>
       <div className='contacs'>
         <div className='heading-contact'>
@@ -66,35 +67,65 @@ export default function Contacs({ contacts, changeChat }) {
           title={username}
           titleChange={onSearchHandler}
         />
-        {filteredContacts.map((contact, index) => {
-          return (
-            <div
-              key={index}
-              onClick={() => changeCurrentChat(index, contact)}
-              className={`contact ${
-                index === currentSelected ? 'selected' : ''
-              }`}>
-              <div className='avatar'>
-                <img
-                  src={`data:image/svg+xml;base64,${
-                    contact.avatarImage === undefined
-                      ? ``
-                      : `${contact.avatarImage}`
-                  }`}
-                  alt='avatar'
-                />
-              </div>
-              <div className='short-msg'>
-                <div className='username'>
-                  <h3>{contact.username}</h3>
+        {username === null
+          ? contacts.map((contact, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => changeCurrentChat(index, contact)}
+                  className={`contact ${
+                    index === currentSelected ? 'selected' : ''
+                  }`}>
+                  <div className='avatar'>
+                    <img
+                      src={`data:image/svg+xml;base64,${
+                        contact.avatarImage === undefined
+                          ? ``
+                          : `${contact.avatarImage}`
+                      }`}
+                      alt='avatar'
+                    />
+                  </div>
+                  <div className='short-msg'>
+                    <div className='username'>
+                      <h3>{contact.username}</h3>
+                    </div>
+                    <div className='msg'>
+                      <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                  </div>
                 </div>
-                {/* <div className='msg'>
-                  <p>Lorem ipsum dolor sit amet.</p>
-                </div> */}
-              </div>
-            </div>
-          );
-        })}
+              );
+            })
+          : filteredContacts.map((contact, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => changeCurrentChat(index, contact)}
+                  className={`contact ${
+                    index === currentSelected ? 'selected' : ''
+                  }`}>
+                  <div className='avatar'>
+                    <img
+                      src={`data:image/svg+xml;base64,${
+                        contact.avatarImage === undefined
+                          ? ``
+                          : `${contact.avatarImage}`
+                      }`}
+                      alt='avatar'
+                    />
+                  </div>
+                  <div className='short-msg'>
+                    <div className='username'>
+                      <h3>{contact.username}</h3>
+                    </div>
+                    <div className='msg'>
+                      <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
       </div>
     </div>
   );

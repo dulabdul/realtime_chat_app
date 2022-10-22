@@ -35,6 +35,53 @@ body{
   background-color: var(--background-color);
 }
 //end of global styles
+//avatar styles
+.loader {
+  max-inline-size: 100%;
+}
+.title-container {
+  h1 {
+    color: white;
+    margin: 1rem;
+  }
+}
+.avatars {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  .avatar {
+    cursor: pointer;
+    border: 0.4rem solid transparent;
+    padding: 0.4rem;
+    border-radius: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease-in-out;
+    img {
+      height: 6rem;
+      transition: 0.5s ease-in-out;
+    }
+  }
+  .selected {
+    border: 0.4rem solid #4e0eff;
+  }
+}
+.btn-submit {
+  background-color: #4e0eff;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  &:hover {
+    background-color: #4e0eff;
+  }
+}
+// end of avatar
 //login/register styles
     .brand {
         display: flex;
@@ -130,6 +177,7 @@ body{
   display: grid;
   grid-template-rows: 15% 85%;
   gap: 1.2rem;
+  height: 100vh;
   overflow: hidden;
   background-color: var(--secondary-color);
 
@@ -277,11 +325,11 @@ body{
 // chat container
 .container{
   .container-chat {
-    height: 85vh;
-    width: 85vw;
+    height: 100vh;
+    width: 100vw;
     background-color: #00000076;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 100%;
 
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-columns: 35% 65%;
@@ -302,6 +350,18 @@ body{
     align-items: center;
     padding: 0 2rem;
     .user-details {
+      .btn-back{
+        button{
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          svg{
+            font-size: 2rem;
+            color: var(--main-text-color);
+          }
+        }
+
+      }
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -316,25 +376,7 @@ body{
         }
       }
     }
-    .btn-logout {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      background-color: var(--button-color);
-      border: none;
-      cursor: pointer;
-      &:hover {
-        background-color: #a59f84;
-      }
-      svg {
-        font-size: 1.3rem;
-        &:hover {
-          color: #ffffff;
-        }
-      }
-    }
+
   }
   .chat-message {
     padding: 1rem 2rem;
@@ -435,16 +477,16 @@ body{
     }
     .input-container {
       width: 100%;
-      border-radius: 2rem;
       display: flex;
       align-items: center;
-      gap: 2rem;
-      background-color: var(--input-color);
+      gap: 1rem;
+     
       input {
-        width: 90%;
-        height: 60%;
-        color: #fff;
-        background-color: transparent;
+        background-color: var(--input-color);
+        width: 100%;
+        border-radius: 1rem;
+
+        color: var(--secondary-text-color);
         border: none;
         padding-left: 1rem;
         font-size: 1.2rem;
@@ -457,16 +499,11 @@ body{
       }
       button {
         cursor: pointer;
-        padding: 0.3rem 2rem;
-        border-radius: 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: var(--button-color);
+        background-color: transparent;
         border: none;
-        &:hover {
-          background-color: #c5bc94;
-        }
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           padding: 0.3rem 1rem;
           svg {
@@ -475,10 +512,74 @@ body{
         }
         svg {
           font-size: 2rem;
-          color: #292B29;
+          color: var(--main-text-color);
         }
       }
     }
   }
 }
 // end ofchat container
+.btn-logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  background-color: var(--button-color);
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #a59f84;
+  }
+  svg {
+    font-size: 1.3rem;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+//responsive styles
+
+@media screen and (max-width: 576px){
+  .avatars{
+    grid-template-columns: 1fr 1fr;
+  }
+  .chat-content{
+    padding: .1rem;
+  
+    .input-content {
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      .input-container{
+        gap: 0;
+      }
+      svg {
+        font-size: 1rem;
+      }
+      button {
+        padding: 0.3rem 1rem;
+        svg {
+          font-size: 1rem;
+        }
+      }
+      input {
+        width: 100%;
+        font-size: 0.8rem;
+      }
+      .button-container{
+        margin-left: .4rem;
+      }
+      .input-container{
+        margin: 0 auto;
+        width: 90%;
+        button{
+          padding: .2rem 1rem;
+          svg{
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}

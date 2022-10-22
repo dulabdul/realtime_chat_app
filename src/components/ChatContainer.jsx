@@ -3,8 +3,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { sendMsgRoute, getAllMsgRoute } from '../utils/ApiRoutes';
 import ChatInput from './ChatInput';
 import Logout from './Logout';
+import { FaArrowLeft } from 'react-icons/fa';
 import showFormatMinute from '../utils/formatDate';
 import { v4 as uuidv4 } from 'uuid';
+import Button from '../utils/Button';
 export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
@@ -71,6 +73,13 @@ export default function ChatContainer({ currentChat, socket }) {
     <div className='chat-content'>
       <div className='chat-header'>
         <div className='user-details'>
+          <div className='btn-back'>
+            <Button
+              type='button'
+              onClick={() => window.history.back()}>
+              <FaArrowLeft />
+            </Button>
+          </div>
           <div className='avatar'>
             <img
               src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}

@@ -5,6 +5,7 @@ import LoginPages from './pages/LoginPages';
 import RegisterPage from './pages/RegisterPages';
 import 'react-toastify/dist/ReactToastify.css';
 import AvatarPages from './pages/AvatarPages';
+import ContactsPages from './pages/ContactsPages';
 export default function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,9 @@ export default function App() {
             element={<LoginPages />}></Route>
           <Route
             path='/'
+            element={<ContactsPages />}></Route>
+          <Route
+            path='/chat'
             element={<ChatPages />}></Route>
           <Route
             path='/avatar'
