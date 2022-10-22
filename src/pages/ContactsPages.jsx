@@ -38,7 +38,6 @@ export default function ContactsPages() {
     navigate('/chat');
     localStorage.setItem('chat-app-current-chat', JSON.stringify(chat));
   };
-  console.log(contacts);
   return (
     <Contacs
       contacts={contacts}
