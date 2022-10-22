@@ -60,25 +60,9 @@ export default function RegisterInput() {
     validateInput(e);
   };
 
-  // const handlerValidate = () => {
-  //   if (username.length < 3) {
-  //     toast.error('Username should be grater than 3 characters', toastOptions);
-  //     return false;
-  //   } else if (email === '') {
-  //     toast.error('Email is required', toastOptions);
-  //     return false;
-  //   } else if (password !== confirmPassword) {
-  //     toast.error('Password and confirm password should be same', toastOptions);
-  //     return false;
-  //   } else if (password.length < 8) {
-  //     toast.error('Password should be grater than 8 characters', toastOptions);
-  //     return false;
-  //   }
-  //   return true;
-  // };
   const validateInput = (e) => {
     let { name, value } = e.target;
-    console.log(`ini name ${name} dan value ${value}`);
+
     setError((prev) => {
       const stateObj = { ...prev, [name]: '' };
       switch (name) {
